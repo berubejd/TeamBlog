@@ -1,0 +1,32 @@
+{% block blog_cards %}
+    <div id="card-deck" class="post-feed row row-cols-1 row-cols-md-2 justify-content-center">
+
+    {% for page in pages %}
+        <div class="col-md-5 mb-4">
+            <div class="card h-100">
+                <a class="card-img-top"
+                    href="{{ url_for('page', path=page.path) }}">
+                    <img src="{{ page.image }}">
+                </a>
+                <div class="card-body">
+                    <h3 class="card-title">
+                        <a href="{{ url_for('page', path=page.path) }}" rel="bookmark">{{ page.title }}</a>
+                    </h3>
+                    <p class="card-text">{{ page.summary }}</p>
+                </div>
+                <div class="card-footer">
+                    <small class="mr-auto">{{ page.date|dateformat }}</small>
+                    <a class="d-flex" href="{{ url_for('tag', tag=page.tag) }}"><small>{{ page.tag|default("") }}</small></a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    {% if not pages|length % 2 == 0 %}
+        <!-- Empty card if not a round # of cards available -->
+        <div class="col-md-5 mb-4">
+            <div></div>
+        </div>
+    {% endif %}
+    </div> <!-- End Card Container -->
+{% endblock %}

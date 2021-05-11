@@ -1,0 +1,24 @@
+{% from "_helpers.j2" import messages %}
+{% extends "base.j2" %}
+
+{% set active_page = 'tags' %}
+
+{% block title %}Tag: {{ tag }}{% endblock %}
+
+{% block main_content %}
+    <div id="content" class="my-5">
+        <div class="w-100">
+            <main>
+
+                <section id="not-a-hero" class="mb-5">
+                    <h2 class="title underline mb-4 w-75 mx-auto">Posts for tag: {{ tag }}</h2>
+
+                    {% include "blog-cards.j2" %}
+
+                </section> <!-- End Recent Posts -->
+
+            </main>
+        </div>
+
+    </div> <!-- End Content -->
+{% endblock %}

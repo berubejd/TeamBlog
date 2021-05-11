@@ -1,0 +1,133 @@
+{% from "_helpers.j2" import messages, render_field, render_submit_field %}
+{% extends "base.j2" %}
+
+{% set active_page = "images" %}
+
+{% block title %}Images{% endblock %}
+
+{% block main_content %}
+<div id="content" class="my-5">
+    <div class="w-100">
+        <main>
+
+            <section id="not-a-hero" class="mb-5">
+                <h2 class="title underline mb-4 w-75 mx-auto">Available Images</h2>
+
+                <table id="file-table" class="table table-bordered w-75 mx-auto">
+                    <thead class="thead-light">
+                        <tr>
+                            <th class="cell-center" scope="col" rowspan="2">Preview</th>
+                            <th class="cell-center" scope="col">Image Name</th>
+                            <th class="cell-center" scope="col">Usage</th>
+                            <th class="cell-center" scope="col" rowspan="2">Delete</th>
+                        </tr>
+                        <tr>
+                            <th class="cell-center" scope="col" colspan="2">Image Path</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for image in images %}
+                        <tr>
+                            <th class="cell-center" scope="row" rowspan="2">
+                                <a href="{{ url_for('static', filename=image_path + '/' + image) }}" target="_blank">
+                                    <img src="{{ url_for('static', filename=image_path + '/' + image) }}" width=100>
+                                </a>
+                            </th>
+                            <td class="cell-vertical-center font-weight-bold">{{ image }}</td>
+                            <td class="cell-center">{{ usage[image] }}</td>
+                            <td class="cell-center" rowspan="2">
+                                {% if usage[image] == 0 %}
+                                <a id="delete-button" class="btn btn-danger" href="{{ url_for('image_delete', name=image) }}">x</a>
+                                {% else %}
+                                <p class="m-0">In use</p>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="cell-vertical-center" colspan="2">
+                                <a class="image-link" data-toggle="tooltip" data-placement="top" title="Copy">
+                                    <span class="target">{{ url_for('static', filename=image_path + '/' + image, _external=True) }}</span>
+                                    <i class="far fa-copy ml-2"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <h2 class="title underline mt-5 mb-4 w-75 mx-auto">Image Upload</h2>
+
+                <div class="w-75 mx-auto">
+                    <form action="{{ url_for('image_upload') }}" method="post" enctype="multipart/form-data" role="form" class="contactForm">
+                        <div class="custom-file">
+                            {{ form.hidden_tag() }}
+                            {{ render_field(form.upload, label_visible=false, class="custom-file-input") }}
+                            {{ render_field(form.upload_label, label_visible=false, placeholder="Choose File", class="custom-file-label", for="upload") }}
+                            {{ render_submit_field(form.submit, label="Upload Image") }}
+                        </div>
+                    </form>
+                    {% if form.errors %}
+                    <div id="error-feedback" class="text-center">
+                        {% for key, value in form.errors.items() %}
+                        <p>{{ key|title }}: {{ value|join(',') }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+            </section> <!-- End Image Table and Upload -->
+
+        </main>
+    </div>
+
+</div> <!-- End Content -->
+{% endblock %}
+
+{% block addl_scripts%}
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+
+            $('.image-link').on('click', function() {
+                // Get a pointer to the original span
+                var copyText = $(this).find('span');
+
+                // Create a temporary textarea for the copy
+                var textArea = document.createElement("textarea");
+
+                // Copy the span text into the temporary text area
+                textArea.value = copyText.text();
+                document.body.appendChild(textArea);
+                textArea.select();
+
+                // Copy to clipboard
+                var success = document.execCommand("Copy");
+
+                // Remove temporary textarea
+                textArea.remove();
+
+                // Trigger event to update tooltip
+                if (success) {
+                    $(this).trigger('copied', ['Copied!']);
+                } else {
+                    $(this).trigger('copied', ['Copy with Ctrl-C']);
+                }
+            }); // End image-link click
+
+            $('.image-link').bind('copied', function(event, message) {
+                // Save original tooltip value
+                var originalTitle = $(this).attr('data-original-title');
+
+                // Set tooltip with new value, show it, then copy the original back
+                $(this).attr('data-original-title', message)
+                    .tooltip('show')
+                    .attr('data-original-title', originalTitle);
+            }); // End image-link copied
+
+            $(".custom-file-input").on("change", function() {
+                var fileName = $(this).val().split("\\").pop();
+                $(".custom-file-label").addClass("selected").html(fileName);
+            }); // End file label update
+        });
+    </script>
+{% endblock %}

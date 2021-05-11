@@ -1,0 +1,41 @@
+{% from "_helpers.j2" import messages %}
+{% extends "base.j2" %}
+
+{% set active_page = "blog" %}
+
+{% block title %}Post{% endblock %}
+
+{% block main_content %}
+    <div id="content" class="my-5">
+        <div class="w-100">
+            <main>
+
+                <section id="hero" class="mb-5">
+                    <h1 class="title underline mt-0 mb-3 w-75 mx-auto">{{ page.title }}</h1>
+                    <img alt="{{ page.title }}" src="{{ page.image }}">
+                </section>
+
+                <section id="post" class="mb-5">
+                    <div class="content w-75 mx-auto">
+                        {{ page.html|safe }}
+                    </div>
+                </section>
+
+                <section id="post-footer" class="w-75 mx-auto">
+                    <p class="text-muted mr-auto">{{ page.date|dateformat("%A, %b %-d, %Y") }}</p>
+                    <p class="text-muted ml-auto">{{ page.author|default("Anonymous") }}</p>
+                </section>
+
+                {% if "user_id" in session %}
+                <section id="post-delete" class="w-75 mx-auto">
+                    <form action="" method="post">
+                        <button type="submit" class="btn btn-danger w-100 mx-auto">Delete this post?</button>
+                    </form>
+                </section>
+                {% endif %}
+
+            </main>
+        </div>
+
+    </div> <!-- End Content -->
+{% endblock %}

@@ -1,0 +1,51 @@
+{% from "_helpers.j2" import messages %}
+{% extends "base.j2" %}
+
+{% block title %}Index{% endblock %}
+
+{% block main_content %}
+<div id="content" class="my-5">
+    <div class="w-100">
+        <main>
+
+            <section id="hero" class="mb-5">
+                <h1 class="title mt-0 mb-3 w-75 mx-auto">Welcome to Team Blog.</h1>
+                <div class="content w-75 mx-auto">
+                    <p>This web application was put together to highlight a couple of different pieces of
+                        tech and to also serve as the "final" project for CS50x.</p>
+                </div>
+            </section>
+            <section id="about">
+                <h2 class="title underline w-75 mt-0 mb-4 mx-auto">About</h2>
+                <div class="content w-75 mx-auto">
+                    <p>There are a few pieces of software that this site implements.</p><p>The site uses a custom
+                        passwordless login system which doesn't depend on <a href="https://flask-login.readthedocs.io/"
+                            target="_blank">flask-login <i class="fas fa-external-link-alt"></i></a> at all.  Access is provided 
+                            via encrypted tokens provided to administrators by email and email delivery is being handled by Sendgrid via their 
+                            API.</p><p>The blog pages themselves are generated from markdown stored on the filesystem by <a
+                            href="https://flask-flatpages.readthedocs.io/" target="_blank">flask-flatpages <i
+                                class="fas fa-external-link-alt"></i></a> and created via the Admin Portal located at
+                        '/admin'. The portal uses a JavaScript library called SimpleMDE (provided by <a
+                            href="https://flask-simplemde.readthedocs.io/" target="_blank">flask-simplemde <i
+                                class="fas fa-external-link-alt"></i></a>) to provide an incredible editor that allows 
+                                the final page to be previewed before being published.</p><p>Finally, the image management page leverages
+                        a small amount of custom JavaScript written using jQuery and <a
+                            href="https://github.com/jugmac00/flask-reuploaded" target="_blank">flask-reupload <i
+                                class="fas fa-external-link-alt"></i></a> which is an up to date version of <a
+                            href="https://pythonhosted.org/Flask-Uploads/" target="_blank">flask-uploads <i
+                                class="fas fa-external-link-alt"></i></a>.</p>
+                </div>
+            </section> <!-- End header -->
+
+            <section id="not-a-hero" class="mb-5">
+                <h2 class="title underline mb-4 w-75 mx-auto">Recent Posts</h2>
+
+                {% include "blog-cards.j2" %}
+
+            </section> <!-- End Recent Posts -->
+
+        </main>
+    </div>
+
+</div> <!-- End Content -->
+{% endblock %}

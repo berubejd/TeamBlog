@@ -1,0 +1,23 @@
+{% from "_helpers.j2" import messages, render_field, render_submit_field %}
+{% extends "base.j2" %}
+
+{% block title %}Email Sent{% endblock %}
+
+{% block main_content %}
+    <div id="content" class="my-5">
+        <div class="w-100">
+            <main>
+
+                <section id="hero" class="mb-5">
+                    <h1 class="title mt-0 mb-3 w-75 mx-auto">Check your email</h1>
+                    <div class="content w-75 mx-auto">
+                        <p>Email has been sent.  Please check your email for the login email.</p>
+                        <p>Thank you!</p>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+{% endblock %}

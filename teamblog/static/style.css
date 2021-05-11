@@ -1,0 +1,381 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 112.5%;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", Helvetica, sans-serif;
+    color: #555e69;
+    line-height: 1.6;
+}
+
+a {
+    border-bottom: 2px solid #fc6e51;
+    color: #33383f;
+    text-decoration: none;
+}
+
+a:hover {
+    border-color: currentColor;
+    text-decoration: none;
+}
+
+a:visited, a:focus {
+    color: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 { 
+    color: #33383f;
+    font-weight: bold;
+    line-height: 1.2;
+    margin: 1.66667rem 0 0.83333rem;
+    text-rendering: optimizeLegibility;
+}
+
+h1:first-child, h2:first-child, h3:first-child {
+    margin-top: 0;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.8em;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
+.underline {
+    position: relative;
+}
+
+.underline:after {
+    border-left: 30px solid #fc6e51;
+    box-shadow: inset 0 1px 0 0 #e9ebed;
+    display: block;
+    content: "";
+    height: 3px;
+    margin-top: 1rem;
+}
+
+blockquote {
+    color: #555e69;
+    font-family: Tahoma, sans-serif;
+    font-size: 30px;
+    width: 70%;
+    margin: 0 auto 3rem;
+}
+
+blockquote h1 {
+    font-size: 4rem;
+}
+ 
+blockquote p {
+    font-style: italic;
+    margin-bottom: 0;
+}
+ 
+blockquote p::before, blockquote p::after {
+    content: "“";
+    font-family: Georgia;
+    font-size: 8rem;
+    margin: -2rem 0 0 -4rem;
+    position: absolute;
+    opacity: 0.5;
+}
+ 
+blockquote p::after {
+    content: "”";
+    margin: -1rem -4rem 0 0;
+}
+ 
+blockquote cite {
+    font-size: 1.5rem;
+}
+
+.error-feedback {
+    color: red;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+/* Menu */
+
+#masthead {
+    position: fixed;
+}
+
+header {
+    background: linear-gradient(rgba(51, 56, 63, 0.90), rgba(51, 56, 63, 0.0)),  url(../static/michael-diane-weidner-h-rP5KSC2W0-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    border: 0;
+    color: #959ea9;
+    border-bottom: 0;
+    border-right: 1px solid #e9ebed;
+    height: 100%;
+    left: 0;
+    text-align: center;
+    top: 0;
+}
+
+.logo a {
+    border: 0;
+}
+
+.logo .avatar {
+    border: 3px solid #fc6e51;
+    box-shadow: 0 0 1px 11px rgba(252, 110, 81, 0.2);
+    border-radius: 100%;
+    display: block;
+    object-fit: cover;
+    height: 115px;
+    width: 115px;
+}
+
+.logo i {
+    color: #1de2bc;
+}
+
+.site-branding {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.site-title {
+    color: #fff;
+    font-size: 1.3rem;
+    line-height: 1.2;
+    font-weight: bold;
+    margin: 0;
+}
+
+.site-title a {
+    border: 0;
+    color: inherit;
+}
+
+.site-description {
+    font-size: 14px;
+    line-height: 1.2;
+    margin-top: 0.4em;
+}
+
+header .nav-link, header .social-links .button-icon {
+    border-color: #555e69;
+}
+
+.nav-link, #logout-link {
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: 0.15em;
+    margin: 0;
+    padding: 0.5em 0;
+    color: inherit;
+    text-transform: uppercase;
+    border-top: 1px solid #555e69;
+    border-bottom: none;
+}
+
+.nav {
+    border-bottom: 1px solid #555e69;    
+}
+
+.nav-link.active, a.nav-link:hover, .card-title a:hover, .card-footer a:hover, #logout-link:hover {
+    color: #fc6e51;
+}
+
+.nav-link:focus, #logout-link:focus {
+    color: inherit;
+}
+
+#logout-link {
+    border-top: none;
+}
+
+/* Social Links */
+
+.button-icon {
+    align-items: center;
+    display: inline-flex;
+    font-size: 1em;
+    height: 2em;
+    justify-content: center;
+    line-height: 2em;
+    padding: 0;
+    position: relative;
+    width: 2em;
+    border-radius: 50%;
+}
+
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.66667em;
+}
+
+.social-links a {
+    color: inherit;
+    margin: 0 10px 0.5em 0;
+}
+
+.social-links a.button-icon {
+    background: transparent;
+    border: 1px solid #959ea9;
+    font-size: 16px;
+    height: 2em;
+    line-height: 2em;
+    width: 2em;
+}
+
+.social-links a .fab {
+    color: #959ea9;
+}
+
+.social-links a.button-icon:hover, .social-links a.button-icon:focus, .social-links a.button-icon:active {
+    background: #fc6e51;
+    border-color: #fc6e51;
+    box-shadow: 0 0 1px 5px rgba(252, 110, 81, 0.2);
+    color: #fff;
+}
+
+.social-links a:hover .fab {
+    color: #fff;
+}
+
+/* Content */
+
+#hero .title {
+    font-size: 2.25em;
+}
+
+#hero .content {
+    font-size: 1.25em;
+    line-height: 1.5;
+}
+
+#about .title, #not-a-hero .title {
+    color: #33383f;
+    font-size: 1em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+#about, #post {
+    margin-bottom: 5em;
+}
+
+#about .content a:any-link, #post .content a:any-link {
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+}
+
+#about .content a i {
+    font-size: 0.7rem;
+    vertical-align: middle;
+    padding-bottom: 2px;
+}
+
+#about .content a:hover, #post .content a:hover, #file-table a:hover {
+    color: #fc6e51;
+}
+
+.card a:link {
+    border: none;
+}
+
+.card-title {
+    border-bottom: 1px solid #e9ebed;
+    font-size: 1.33333em;
+    margin: 0;
+    padding-bottom: 0.8rem;
+}
+
+.card-text {
+    font-size: 16px;
+    padding: 1.25rem 0;
+}
+
+#post-footer, .card-footer {
+    font-size: 16px;
+    text-transform: uppercase;
+    display: flex;
+}
+
+/* File Table */
+
+#file-table td {
+    font-size: 16px;
+}
+
+.cell-center {
+    text-align: center;
+    vertical-align: middle !important;
+}
+
+.cell-vertical-center {
+    vertical-align: middle !important;
+}
+
+#delete-button:visited {
+    color:#fff;
+}
+
+#file-table a {
+    border: none;
+}
+
+/* Images */
+
+img {
+    height: auto;
+    max-width: 100%;
+}
+
+#hero img {
+    width: 100%;
+    max-height: 600px;
+    object-fit: cover;
+}
+
+#post img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    #masthead {
+        position: relative !important;
+        padding: 0;
+        margin: 0;
+    }
+
+    #main {
+        margin:0 auto;
+    }
+
+    #card-deck {
+        margin:0 auto;
+    }
+}

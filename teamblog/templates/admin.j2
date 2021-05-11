@@ -1,0 +1,57 @@
+{% from "_helpers.j2" import messages, render_field, render_submit_field %}
+{% extends "base.j2" %}
+
+{% set active_page = "admin" %}
+
+{% block title %}Admin{% endblock %}
+
+{% block addl_css %}
+    {{ simplemde.css }}
+{% endblock %}
+
+{% block main_content %}
+    <div id="content" class="my-5">
+        <div class="w-100">
+            <main>
+
+                <section id="hero" class="mb-5">
+                    {# <h1 class="title mt-0 mb-3 w-75 mx-auto">Welcome to the Admin page.</h1> #}
+                    <h1 class="title mt-0 mb-3 w-75 mx-auto">Welcome, {{ session.displayname }}.</h1>
+                    <div class="content w-75 mx-auto">
+                        <p>Here is where you create a new blog entry.  Enter the details of your 
+                        new entry below, hit the submit button, and your page will be available 
+                        immediately.</p>
+                        <p>Enjoy!</p>
+                    </div>
+                </section>
+
+                <section id="not-a-hero" class="mb-5">
+                <h2 class="title underline mb-4 w-75 mx-auto">Create a new entry</h2>
+
+                    <div class="w-75 mx-auto">
+                        <form action="" method="post" role="form" class="contactForm">
+                            {{ form.hidden_tag() }}
+                            {{ render_field(form.title, label_visible=false, placeholder="Title", maxlength=200) }}
+                            {{ render_field(form.image, label_visible=false, placeholder="Image URL") }}
+                            {{ render_field(form.date, label_visible=true) }}
+                            {{ render_field(form.tag, label_visible=true) }}
+                            {{ render_field(form.summary, label_visible=true, placeholder="Enter a summary to be shown on cards", rows=3) }}
+                            {{ render_field(form.markdown_text, label_visible=true, placeholder="Enter your full blog content, in Markdown format, here", rows=5) }}
+                            {{ render_submit_field(form.submit, label="Save Blog Entry") }}
+                        </form>
+                    </div>
+
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block addl_scripts %}
+    {{ simplemde.js }}
+    <script>
+        var simplemde = new SimpleMDE({ element: $("#markdown_text")[0], forceSync: true, });
+    </script>
+{% endblock %}

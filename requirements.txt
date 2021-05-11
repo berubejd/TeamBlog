@@ -1,0 +1,10 @@
+email_validator
+flask
+Flask-FlatPages
+Flask-Reuploaded
+Flask-SimpleMDE
+Flask-SQLAlchemy
+Flask-WTF
+Pillow
+python-dotenv
+sendgrid

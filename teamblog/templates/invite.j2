@@ -1,0 +1,47 @@
+{% from "_helpers.j2" import messages, render_field, render_submit_field %}
+{% extends "base.j2" %}
+
+{% set active_page = "invite" %}
+
+{% block title %}Invite{% endblock %}
+
+{% block main_content %}
+    <div id="content" class="my-5">
+        <div class="w-100">
+            <main>
+
+                <section id="hero" class="mb-5">
+                    <h1 class="title mt-0 mb-3 w-75 mx-auto">Invite someone to help!</h1>
+                    <div class="content w-75 mx-auto">
+                        <p>Please provide an email address and the name of the person we 
+                        should invite to use the site with you.</p>
+                        <p>Thank you!</p>
+                    </div>
+                </section>
+
+                <section id="not-a-hero" class="mb-5">
+                <h2 class="title underline mb-4 w-75 mx-auto">Account information</h2>
+
+                    <div class="w-75 mx-auto">
+                        <form action="" method="post" role="form" class="contactForm">
+                            {{ form.hidden_tag() }}
+                            {{ render_field(form.email, label_visible=false, placeholder="Email Address") }}
+                            {{ render_field(form.displayname, label_visible=false, placeholder="Name you would like displayed on the blog") }}
+                            {{ render_submit_field(form.submit, label="Send Invite") }}
+                        </form>
+                        {% if form.errors %}
+                        <div id="error-feedback" class="text-center">
+                            {% for key, value in form.errors.items() %}
+                            <p>{{ key|title }}: {{ value|join(',') }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+{% endblock %}
