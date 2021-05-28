@@ -27,7 +27,6 @@ app.config.from_object(Config)
 db.init_app(app)
 pages = FlatPages(app)
 SimpleMDE(app)
-# photos = UploadSet("photos", IMAGES)  # This is also in forms?
 configure_uploads(app, photos)
 
 
@@ -255,7 +254,7 @@ def register():
 @app.route("/images", methods=["GET"])
 @login_required()
 def images():
-    # This would probably been a LOT easier to just do by hand...
+    # This would probably have been a LOT easier to just do by hand...
     images_path = (
         Path()
         / app.config["FLASK_APP"]
