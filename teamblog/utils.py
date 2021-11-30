@@ -48,7 +48,7 @@ def send_login_email(user):
         subject="TeamBlog Login Link",
         html_content=render_template(
             "login_email.j2",
-            user=user,
+            name=user.displayname,
             link=url_for("login", token=user.serialize_token(), _external=True),
         ),
     )
