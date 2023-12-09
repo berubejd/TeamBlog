@@ -6,8 +6,6 @@ import resend
 from flask import current_app, flash, redirect, request, session, url_for
 from flask.templating import render_template
 
-resend.api_key = current_app.config["RESEND_API_KEY"]
-
 
 def is_safe_url(target):
     """
@@ -43,6 +41,8 @@ def login_required(
 
 
 def send_login_email(user):
+    resend.api_key = current_app.config["RESEND_API_KEY"]
+
     params = {
         "from": current_app.config["BLOG_CONTACT_EMAIL"],
         "to": [user.email],
@@ -65,6 +65,8 @@ def send_login_email(user):
 
 def send_invite_email(email, displayname):
     from itsdangerous import TimedJSONWebSignatureSerializer
+
+    resend.api_key = current_app.config["RESEND_API_KEY"]
 
     def create_token(email, displayname, expiration=3600):
         private_key = current_app.config["SECRET_KEY"]
