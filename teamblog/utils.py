@@ -2,10 +2,11 @@ import imghdr
 from functools import wraps
 from urllib.parse import urljoin, urlparse
 
+import resend
 from flask import current_app, flash, redirect, request, session, url_for
 from flask.templating import render_template
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Email, Mail, To
+
+resend.api_key = current_app.config["RESEND_API_KEY"]
 
 
 def is_safe_url(target):
@@ -42,24 +43,23 @@ def login_required(
 
 
 def send_login_email(user):
-    message = Mail(
-        from_email=Email(current_app.config["BLOG_CONTACT_EMAIL"]),
-        to_emails=To(user.email),
-        subject="TeamBlog Login Link",
-        html_content=render_template(
+    params = {
+        "from": current_app.config["BLOG_CONTACT_EMAIL"],
+        "to": [user.email],
+        "subject": "TeamBlog Login Link",
+        "html": render_template(
             "login_email.j2",
             name=user.displayname,
             link=url_for("login", token=user.serialize_token(), _external=True),
         ),
-    )
+    }
 
     try:
-        sg = SendGridAPIClient(current_app.config["SENDGRID_API_KEY"])
-        sg.send(message)
+        r = resend.Emails.send(params)
         return True
 
     except Exception as e:
-        print(e.message)
+        print(str(e))
         return False
 
 
@@ -82,24 +82,23 @@ def send_invite_email(email, displayname):
         # This is dirty but the app is not all the way up yet so url_for is not generating proper urls
         register_link = f"http://{current_app.config['SERVER_NAME']}/admin/register?token={create_token(email, displayname)}"
 
-    message = Mail(
-        from_email=Email(current_app.config["BLOG_CONTACT_EMAIL"]),
-        to_emails=To(email),
-        subject="You've been invited to use TeamBlog!",
-        html_content=render_template(
+    params = {
+        "from": current_app.config["BLOG_CONTACT_EMAIL"],
+        "to": [email],
+        "subject": "You've been invited to use TeamBlog!",
+        "html": render_template(
             "register_email.j2",
             name=displayname,
             link=register_link,
         ),
-    )
+    }
 
     try:
-        sg = SendGridAPIClient(current_app.config["SENDGRID_API_KEY"])
-        sg.send(message)
+        r = resend.Emails.send(params)
         return True
 
     except Exception as e:
-        print(e.message)
+        print(str(e))
         return False
 
 

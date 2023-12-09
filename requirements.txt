@@ -1,10 +1,11 @@
 email_validator
-flask
+Flask<=2.3.3
 Flask-FlatPages
 Flask-Reuploaded
 Flask-SimpleMDE
 Flask-SQLAlchemy
 Flask-WTF
+itsdangerous==2.0.1
 Pillow
 python-dotenv
-sendgrid
+resend

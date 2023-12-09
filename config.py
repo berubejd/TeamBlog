@@ -34,8 +34,8 @@ class Config:
     SQLALCHEMY_DATABASE_URI = database_url
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    # Sendgrid Config
-    SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
+    # Resend Config
+    RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
 
     # FlatPages Config
     FLATPAGES_ROOT = "pages"

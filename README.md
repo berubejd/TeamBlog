@@ -5,7 +5,7 @@ Team Blog is a small Flask application that provides a means for a team of blogg
 
 ### Custom passwordless authentication
 
-While most Flask applications use an authenticaton system based on [flask-login](https://flask-login.readthedocs.io/), I wanted to implement a passwordless system.  Rather than require a local password to be stored or to depend on a third-party OAuth system, access is provided via encrypted tokens delivered by email.   Email delivery, in this implementation, is being provided by [Sendgrid's API](https://sendgrid.com/docs/for-developers/sending-email/quickstart-python/).
+While most Flask applications use an authenticaton system based on [flask-login](https://flask-login.readthedocs.io/), I wanted to implement a passwordless system.  Rather than require a local password to be stored or to depend on a third-party OAuth system, access is provided via encrypted tokens delivered by email.   Email delivery, in this implementation, is now being provided by [Resend's API](https://resend.com/docs/send-with-flask).
 
 ### Markdown generated HTML blog pages
 

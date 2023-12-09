@@ -18,5 +18,5 @@ That may not be entirely accurate because I can't stand working from a laptop, u
 
 Thanks!  
 Jeff  
-
+ 
 *berubejd@gmail.com*
